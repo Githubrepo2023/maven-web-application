@@ -1,0 +1,24 @@
+node
+{
+    def mavenHome = tool name: "maven3.9.6"
+    stage ('checkoutcode')
+    {
+        git credentialsId: '38709f61-199c-4c63-8747-03276aae9bcf', url: 'https://github.com/Githubrepo2023/maven-web-application.git'
+    }
+    stage ('Build')
+    {
+        sh "${mavenHome}/bin/mvn clean package" 
+    }
+    /*
+    stage('excute sonarquebe report')
+    {
+        sh "${mavenHome}/bin/mvn clean sonar:sonar"
+    }
+    
+    stage('deployetheapplicationtomcat'){
+    sshagent(['7aa344d9-62ac-4e82-97fe-68b62ce692f3']) {
+   sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.39.135:/opt/tomcat8/webapps"
+}
+}
+*/
+}//node closing
