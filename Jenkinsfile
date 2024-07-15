@@ -1,6 +1,7 @@
 node
 {
     def mavenHome = tool name: "maven"
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '5')), [$class: 'JobLocalConfiguration', changeReasonComment: '']])
     stage ('checkout code')
     {
         git credentialsId: '4d9e62e7-cb93-4450-b5c8-ea303fc7edb9', url: 'https://github.com/Githubrepo2023/maven-web-application.git'
